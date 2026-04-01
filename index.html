@@ -14,12 +14,12 @@
         <main>
             <div class="tabs">
                 <div role="tablist">
-                    <div role="button" aria-selected="true" id="open-roles">Open Roles</div>
+                    <button role="tab" aria-selected="true" id="open-roles">Open Roles</button>
+                    <button role="tab" aria-selected="false" id="applied">Applied</button>
                 </div>
-                    <div role="button" aria-selected="false" id="applied">Applied</div>
-                </div>
-                <div role="tab-panel" aria-labelledby="open-roles">
-                    <div class="card-1">
+
+                <div role="tabpanel" aria-labelledby="open-roles">
+                    <div class="card">
                         <div class="job-description">
                             <div class="icon"></div>
                             <p>Goldstar Pte. Ltd.</p>
@@ -30,8 +30,9 @@
                         <div class="job-salary">
                             <p>$5000 to $8000</p>
                         </div>
+                        <button class="view-details">View Details</button>
                     </div>
-                    <div class="card-2">
+                    <div class="card">
                         <div class="job-description">
                             <div class="icon"></div>
                             <p>Horizon Trading Ltd.</p>
@@ -42,15 +43,16 @@
                         <div class="job-salary">
                             <p>$3000 to $3500</p>
                         </div>
+                        <button class="view-details">View Details</button>
                     </div>
                 </div>
-                <div role="tab-panel" aria-labelledby="applied" hidden>
+                <div role="tabpanel" aria-labelledby="applied" hidden>
 
                 </div>
             </div>
         </main>
     </div>
-    
+
     <div class="modal-container">
         <dialog class="modal">
         </dialog>
