@@ -1,6 +1,8 @@
 
 :root {
-
+    --ribbon-color: #ED2939;
+    --primary-color: hsla(50, 100%, 50%, 0.7);
+    --secondary-color: hotpink;
 }
 
 * {
@@ -11,6 +13,15 @@
 
 body {
     
+}
+
+.ribbon {
+    background-color: var(--ribbon-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px 0px 10px;
 }
 
 .global-container {
@@ -46,4 +57,57 @@ button:focus {
 
 .card {
     background-color: yellow;
+    display: grid;
+    grid-template-columns: 0.75fr auto;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    & .job-description p:nth-child(2) {
+        color: red;
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    & .job-description {
+        display: grid;
+        grid-template-columns: 100px 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        gap: 5px;
+    }
+}
+
+.open-sans-small {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+}
+
+.open-sans-medium {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    font-style: normal;
+}
+
+.open-sans-large {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    font-style: normal;
+}
+
+.monteserrat-small {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    font-style: normal;
+}
+.monteserrat-large {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    font-style: normal;
 }
