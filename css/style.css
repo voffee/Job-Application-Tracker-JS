@@ -3,6 +3,19 @@
     --ribbon-color: #ED2939;
     --primary-color: hsla(50, 100%, 50%, 0.7);
     --secondary-color: hotpink;
+    --dark-text-color: #36454F;
+    --generic-light-color: #F8F9FB;
+
+    /* Linear gradient colors for the modal backdrop */
+    --page-color-1: #FAEADD;
+    --page-color-2: #FBCF4F;
+    --page-color-3: #F29CB7;
+
+    /* Linear gradient colors for the panel background */
+    --card-color-1: #45FF9A;
+    --card-color-2: #2AF0FF;
+    --card-color-3: #D383FF;
+    --card-color-4: #FE4880;
 }
 
 * {
@@ -40,11 +53,16 @@ body {
 }
 
 button {
-
+    /* background-color: var(--inactive-button-color); */
+    background-color: var(--generic-light-color);
 }
 
 button[aria-selected="true"] {
+    background-color: var(--primary-color);
+}
 
+button:hover {
+    cursor: pointer;
 }
 
 button:focus {
@@ -52,22 +70,63 @@ button:focus {
 }
 
 [role="tabpanel"] {
-    
+
 }
 
 .card {
-    background-color: yellow;
+    background-image: linear-gradient(90deg, var(--card-color-1), var(--card-color-2), var(--card-color-3), var(--card-color-4));
     display: grid;
     grid-template-columns: 0.75fr auto;
     gap: 10px;
+    border-radius: 5px;
+    margin: 10px 0px 10px 0px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
 
     & .job-description p:nth-child(2) {
-        color: red;
+        color: var(--dark-text-color);
+        text-decoration: underline;
         grid-column: 2 / 3;
         grid-row: 1 / 2;
+        align-self: center;
+    }
+
+    & .job-description p:nth-child(3) {
+        color: var(--dark-text-color);
+        border: var(--dark-text-color) 1px dashed;
+        border-top: 0px;
+        border-left: 0px;
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        align-self: center;
+    }
+
+    & .job-description p:nth-child(4) {
+        color: var(--dark-text-color);
+        text-decoration: underline;
+        grid-column: 2 / 3;
+        grid-row: 4 / 5;
+        align-self: center;
+    }
+
+    & .job-description p:nth-child(5) {
+        color: var(--dark-text-color);
+        text-decoration: underline;
+        grid-column: 3 / 4;
+        grid-row: 4 / 5;
+        align-self: center;
+    }
+
+    & .job-description div {
+        height: 80px;
+        width: 80px;
+        background-color: var(--secondary-color);
+        border: var(--dark-text-color) 3px solid;
+        border-radius: 50%;
+        grid-column: 1 / 2;
+        grid-row: 1 / 5;
+        align-self: center;
+        justify-self: center;
     }
 
     & .job-description {
@@ -76,7 +135,23 @@ button:focus {
         grid-template-rows: 1fr 1fr 1fr 1fr;
         gap: 5px;
     }
+
+    & .job-salary p {
+        color: var(--dark-text-color);
+        font-style: italic;
+        margin-bottom: 20px;
+    }
+
+    & .job-salary .view-details {
+        height: 50px;
+        width: 100px;
+        border-radius: 5px;
+        background-color: var(--dark-text-color);
+        color: var(--generic-light-color);
+    }
 }
+
+/* Font Utility Classes */
 
 .open-sans-small {
     font-family: "Open Sans", sans-serif;
@@ -95,7 +170,7 @@ button:focus {
 .open-sans-large {
     font-family: "Open Sans", sans-serif;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 24px;
     font-style: normal;
 }
 
