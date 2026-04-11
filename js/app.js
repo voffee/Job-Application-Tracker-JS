@@ -1,13 +1,17 @@
 
+// Tab variables
 const tabPanels = document.querySelectorAll("[role=tabpanel]");
 const tabButtons = document.querySelectorAll("[role=tab]");
+const detailsButtons = document.querySelectorAll(".view-details");
+
+// Modal variables
+const dialog = document.querySelector(".modal");
 
 // Creating Tab Functionality
 console.log(tabButtons);
 console.log(tabPanels);
 
-// Creating handler function
-
+// Creating Tab handler function
 function handleTabClick(e) {
     // Hide all Tab Panels
     tabPanels.forEach(panel => {
@@ -24,4 +28,14 @@ function handleTabClick(e) {
 
 }
 
+// Creating Modal handler function
+function modalHandler(e) {
+
+    
+    dialog.showModal();
+}
+
+
 tabButtons.forEach(button => (button.addEventListener(`click`, handleTabClick)));
+
+detailsButtons.forEach(button => (button.addEventListener(`click`, modalHandler)));

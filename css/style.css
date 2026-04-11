@@ -45,6 +45,7 @@ body {
     justify-content: center;
 }
 
+/* Tab Styling */
 [role="tablist"] {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -151,8 +152,24 @@ button:focus {
     }
 }
 
-/* Font Utility Classes */
+/* Modal Styling */
+.modal::backdrop {
+    background-image: linear-gradient(var(--page-color-1), var(--page-color-2), var(--page-color-3));
+    opacity: 0.85;
+}
 
+.modal {
+    background-color: #FFF;
+    min-height: 500px;
+    min-width: 500px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Font Utility Classes */
 .open-sans-small {
     font-family: "Open Sans", sans-serif;
     font-weight: 500;
