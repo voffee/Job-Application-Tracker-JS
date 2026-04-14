@@ -3,6 +3,7 @@
 const tabPanels = document.querySelectorAll("[role=tabpanel]");
 const tabButtons = document.querySelectorAll("[role=tab]");
 const detailsButtons = document.querySelectorAll(".view-details");
+const tabs = document.querySelector(".tabs");
 
 // Modal variables
 const dialog = document.querySelector(".modal");
@@ -52,7 +53,9 @@ function handleTabClick(e) {
     e.currentTarget.ariaSelected = true;
 
     // Find the associated tabpanel and show it
-
+    const { id } = e.currentTarget;
+    const showPanel = tabs.querySelector(`[aria-labelledby=${id}]`);
+    showPanel.hidden = false;
 }
 
 // Creating Modal handler function
@@ -92,7 +95,15 @@ function modalHandler(e) {
     <div class="sentinel"></div>
     `
     dialog.showModal();
-    
+    const triggeredCard = e.currentTarget.closest(".card");
+    tabPanels[1].appendChild(triggeredCard);
+    // tabPanels[1].hidden = false;
+    // console.log(tabPanels[1]);
+
+    const applyButton = dialog.querySelector(".apply-button");
+    applyButton.addEventListener("click", () => {
+        dialog.close();
+    });
 }
 
 
