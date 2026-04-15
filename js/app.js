@@ -7,6 +7,7 @@ const tabs = document.querySelector(".tabs");
 
 // Modal variables
 const dialog = document.querySelector(".modal");
+const modalApplyButton = dialog.querySelector(".apply-button");
 const softwareJobDesc = `Software Engineering/Programming
         Design and develop front-end systems in our e-commerce platform with our development team.
         Collaborate with the back-end developers and designers to implement the product development roadmap.
@@ -36,6 +37,22 @@ const softwareJobDesc = `Software Engineering/Programming
         <br>
         <br>
         BullionStar furthermore offers reimbursement of medical bills and access to an employee health and fitness benefit program.`
+const tradingJobDesc = `Design and develop front-end features for our trading platform, collaborating closely with back-end developers and UI/UX designers to deliver on our product roadmap.
+        <br><br>
+        Skills and Characteristics:
+        Self-motivated with strong time management, a sense of ownership over your work from concept to deployment, and a team-oriented approach to maintaining and improving our software long-term.
+        <br><br>
+        Qualifications and Requirements:
+        Strong competence in JavaScript, HTML5, CSS, and React. Typically 2+ years of relevant experience, though exceptional candidates will be considered. Familiarity with front-end build tools such as Webpack or Vite and proficient spoken and written English are required.
+        <br><br>
+        Nice to Have:
+        Experience with TypeScript, REST APIs, or version control workflows in a team environment.
+        <br><br>
+        Position Details:
+        Full-time, permanent role based at Horizon Trading Ltd.'s Singapore office.
+        <br><br>
+        Salary and Benefits:
+        SGD 3,000  SGD 3,500 per month depending on experience, plus an annual bonus of up to three months' salary with a guaranteed minimum of one month. Benefits include medical reimbursement and a health and wellness stipend.`;
 
 // Creating Tab Functionality
 
@@ -53,10 +70,26 @@ function handleTabClick(e) {
     e.currentTarget.ariaSelected = true;
 
     // Find the associated tabpanel and show it
-    const { id } = e.currentTarget;
-    const showPanel = tabs.querySelector(`[aria-labelledby=${id}]`);
-    showPanel.hidden = false;
+    const {id} = e.currentTarget;
+    tabs.querySelector(`[aria-labelledby=${id}]`).hidden = false;
 }
+
+// Intersection Observer Variables
+const modalSentinel = dialog.querySelector(".sentinel");
+
+// Intersection Observer Callback Function
+function obsCallback(payload) {
+    if (payload[0].intersectionRatio === 1) {
+        modalApplyButton.disabled = false;
+        ob.unobserve(dialog.lastElementChild);
+    }
+}
+
+// Intersection Observer
+const ob = new IntersectionObserver(obsCallback, {
+    root: dialog,
+    threshold: 1,
+});
 
 // Creating Modal handler function
 function modalHandler(e) {
@@ -68,8 +101,6 @@ function modalHandler(e) {
     const jobName = card.querySelector(".job-description :nth-child(3)").textContent;
 
     let jobText;
-
-    const tradingJobDesc = `CHICKEN`;
 
     // Checking type of job
     switch(compName) {
@@ -91,7 +122,7 @@ function modalHandler(e) {
     <p class="monteserrat-medium">${jobName}</p>
     <p class="monteserrat-medium">${salary}</p>
     <p class="open-sans-small">${jobText}</p>
-    <button class="apply-button monteserrat-medium">Apply!</button>
+    <button class="apply-button monteserrat-medium" disabled>Apply!</button>
     <div class="sentinel"></div>
     `
     dialog.showModal();
@@ -100,10 +131,17 @@ function modalHandler(e) {
     // tabPanels[1].hidden = false;
     // console.log(tabPanels[1]);
 
+    ob.observe(dialog.lastElementChild);
+
     const applyButton = dialog.querySelector(".apply-button");
-    applyButton.addEventListener("click", () => {
-        dialog.close();
-    });
+    if (applyButton.disabled === false) {
+                applyButton.addEventListener("click", () => {
+                dialog.close();
+                console.log("BUTTON ENABLED");
+            });
+    } else {
+        console.log("BUTTON DISABLED");
+    }
 }
 
 

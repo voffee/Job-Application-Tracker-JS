@@ -70,8 +70,8 @@ button:focus {
     outline: none;
 }
 
-[role="tabpanel"] {
-
+button:disabled:hover {
+    cursor: not-allowed;
 }
 
 .card {
@@ -203,10 +203,22 @@ button:focus {
         cursor: pointer;
     }
 
+    & .apply-button:disabled {
+        background-color: var(--generic-light-color);
+        border-color: var(--dark-text-color);
+    }
+
 }
 
 .modal:not([open]) {
     display: none;
+}
+
+/* Sentinel Element Styling */
+.sentinel {
+    height: 1px;
+    width: 1px;
+    background-color: transparent;
 }
 
 /* Font Utility Classes */
