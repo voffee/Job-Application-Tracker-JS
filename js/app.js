@@ -7,7 +7,6 @@ const tabs = document.querySelector(".tabs");
 
 // Modal variables
 const dialog = document.querySelector(".modal");
-const modalApplyButton = dialog.querySelector(".apply-button");
 const softwareJobDesc = `Software Engineering/Programming
         Design and develop front-end systems in our e-commerce platform with our development team.
         Collaborate with the back-end developers and designers to implement the product development roadmap.
@@ -74,14 +73,19 @@ function handleTabClick(e) {
     tabs.querySelector(`[aria-labelledby=${id}]`).hidden = false;
 }
 
-// Intersection Observer Variables
-const modalSentinel = dialog.querySelector(".sentinel");
-
 // Intersection Observer Callback Function
 function obsCallback(payload) {
+    const applyButton = dialog.querySelector(".apply-button");
+    applyButton.disabled = true;
     if (payload[0].intersectionRatio === 1) {
-        modalApplyButton.disabled = false;
-        ob.unobserve(dialog.lastElementChild);
+        applyButton.disabled = false;
+        // ob.unobserve(dialog.lastElementChild);
+    }
+
+    else {
+        const applyButton = dialog.querySelector(".apply-button");
+        applyButton.disabled = true;
+        console.log("BUTTON DISABLED");
     }
 }
 
@@ -123,25 +127,17 @@ function modalHandler(e) {
     <p class="monteserrat-medium">${salary}</p>
     <p class="open-sans-small">${jobText}</p>
     <button class="apply-button monteserrat-medium" disabled>Apply!</button>
-    <div class="sentinel"></div>
     `
     dialog.showModal();
+    dialog.scrollTop = 0;
+    const applyButton = dialog.querySelector(".apply-button");
+    applyButton.addEventListener("click", () => {
+            dialog.close();
+            console.log("BUTTON ENABLED");
+        });
+    ob.observe(dialog.lastElementChild);
     const triggeredCard = e.currentTarget.closest(".card");
     tabPanels[1].appendChild(triggeredCard);
-    // tabPanels[1].hidden = false;
-    // console.log(tabPanels[1]);
-
-    ob.observe(dialog.lastElementChild);
-
-    const applyButton = dialog.querySelector(".apply-button");
-    if (applyButton.disabled === false) {
-                applyButton.addEventListener("click", () => {
-                dialog.close();
-                console.log("BUTTON ENABLED");
-            });
-    } else {
-        console.log("BUTTON DISABLED");
-    }
 }
 
 
